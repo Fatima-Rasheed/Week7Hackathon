@@ -7,22 +7,21 @@ import serverless from 'serverless-http';
 let server: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    bodyParser: false,
-  });
+  console.log('1️⃣ bootstrap started');
+  console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
 
-  // ✅ CORS (allow frontend)
+  const app = await NestFactory.create(AppModule, { bodyParser: false });
+  console.log('2️⃣ app created');
+
   app.enableCors({
-    origin: '*', // change to your frontend URL later
+    origin: '*',
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
     credentials: true,
   });
 
-  // ✅ Body size config
   app.use(json({ limit: '50mb' }));
   app.use(urlencoded({ extended: true, limit: '50mb' }));
 
-  // ✅ Validation
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -31,17 +30,16 @@ async function bootstrap() {
     }),
   );
 
-  // ✅ API prefix
   app.setGlobalPrefix('api');
 
-  // 🚀 IMPORTANT (for serverless)
+  console.log('3️⃣ calling app.init()...');
   await app.init();
+  console.log('4️⃣ app initialized successfully');
 
   const expressApp = app.getHttpAdapter().getInstance();
   return serverless(expressApp);
 }
 
-// ✅ Vercel handler (NO listen())
 export default async function handler(req: Request, res: Response) {
   if (!server) {
     server = await bootstrap();
