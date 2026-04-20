@@ -14,8 +14,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('MONGODB_URI'),
         serverSelectionTimeoutMS: 5000,
-        connectTimeoutMS: 10000,
-        socketTimeoutMS: 45000,
+        connectTimeoutMS: 5000,
+        socketTimeoutMS: 10000,
+        waitQueueTimeoutMS: 5000,
       }),
       inject: [ConfigService],
     }),

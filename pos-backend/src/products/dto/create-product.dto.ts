@@ -11,23 +11,23 @@ import { Type } from 'class-transformer';
 
 export class RecipeItemDto {
   @IsMongoId()
-  rawMaterialId: string;
+  rawMaterialId!: string;
 
   @IsNumber()
   @Min(0)
-  quantityRequired: number;
+  quantityRequired!: number;
 }
 
 export class CreateProductDto {
   @IsString()
-  name: string;
+  name!: string;
 
   @IsString()
-  category: string;
+  category!: string;
 
   @IsNumber()
   @Min(0)
-  price: number;
+  price!: number;
 
   @IsOptional()
   @IsString()
@@ -36,5 +36,5 @@ export class CreateProductDto {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => RecipeItemDto)
-  recipe: RecipeItemDto[];
+  recipe!: RecipeItemDto[];
 }

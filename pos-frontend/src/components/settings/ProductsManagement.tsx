@@ -210,7 +210,7 @@ export function ProductsManagement() {
   const previewSrc = form.imagePreview || (imageMode === 'url' ? form.image : '');
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 3, maxWidth: 860, mx: 'auto' }}>
       {/* ── Header ── */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Box>
@@ -299,7 +299,7 @@ export function ProductsManagement() {
       {!isLoading && !isError && (
         <Box sx={{
           display: 'grid',
-          gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(auto-fill, minmax(200px, 1fr))' },
+          gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)' },
           gap: 2.5,
         }}>
           {/* ── Add new dish card ── */}

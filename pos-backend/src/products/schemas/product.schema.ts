@@ -4,23 +4,23 @@ import { Document, Types } from 'mongoose';
 export type ProductDocument = Product & Document;
 
 export class RecipeItem {
-  rawMaterialId: Types.ObjectId;
-  quantityRequired: number;
+  rawMaterialId!: Types.ObjectId;
+  quantityRequired!: number;
 }
 
 @Schema({ timestamps: true })
 export class Product {
   @Prop({ required: true, trim: true })
-  name: string;
+  name!: string;
 
   @Prop({ required: true, trim: true })
-  category: string;
+  category!: string;
 
   @Prop({ required: true, min: 0 })
-  price: number;
+  price!: number;
 
   @Prop({ default: '' })
-  image: string;
+  image!: string;
 
   @Prop({
     type: [
@@ -31,7 +31,7 @@ export class Product {
     ],
     default: [],
   })
-  recipe: RecipeItem[];
+  recipe!: RecipeItem[];
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

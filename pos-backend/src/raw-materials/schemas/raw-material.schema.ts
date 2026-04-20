@@ -6,13 +6,13 @@ export type RawMaterialDocument = RawMaterial & Document;
 @Schema({ timestamps: true })
 export class RawMaterial {
   @Prop({ required: true, trim: true })
-  name: string;
+  name!: string;
 
   @Prop({ required: true, enum: ['g', 'ml', 'pcs'] })
-  unit: string;
+  unit!: string;
 
   @Prop({ required: true, min: 0, default: 0 })
-  currentStock: number;
+  currentStock!: number;
 
   @Prop({ min: 0 })
   minStockAlert?: number;

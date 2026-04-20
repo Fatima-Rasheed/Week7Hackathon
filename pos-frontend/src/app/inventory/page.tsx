@@ -190,7 +190,7 @@ export default function InventoryPage() {
                         {isLow(mat) ? (
                           <Chip label="Low Stock" color="warning" size="small" />
                         ) : (
-                          <Chip label="OK" color="success" size="small" />
+                          <Chip label="In Stock" color="success" size="small" />
                         )}
                       </TableCell>
                       <TableCell>

@@ -132,7 +132,7 @@ export function Sidebar() {
       </Box>
 
       {/* Bottom preferences icon */}
-      <Tooltip title="Preferences" placement="right">
+      {/* <Tooltip title="Preferences" placement="right">
         <Box
           sx={{
             width: 52,
@@ -149,7 +149,7 @@ export function Sidebar() {
         >
           <SettingsOutlinedIcon sx={{ fontSize: 22 }} />
         </Box>
-      </Tooltip>
+      </Tooltip> */}
     </Box>
   );
 }

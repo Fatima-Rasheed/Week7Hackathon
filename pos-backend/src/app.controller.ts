@@ -5,8 +5,9 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  // Accessible at /api (due to global prefix)
   @Get()
-  getHello(): string {
+  getHello() {
     return this.appService.getHello();
   }
 }

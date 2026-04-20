@@ -2,9 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { json, urlencoded } from 'express';
-import serverless from 'serverless-http';
-
-let server: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bodyParser: false });
@@ -28,15 +25,9 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
-  await app.init(); // ✅ NOT app.listen()
-
-  const expressApp = app.getHttpAdapter().getInstance();
-  return serverless(expressApp);
+  const port = process.env.PORT || 3001;
+  await app.listen(port);
+  console.log(`Server running on http://localhost:${port}`);
 }
 
-export default async function handler(req: any, res: any) {
-  if (!server) {
-    server = await bootstrap();
-  }
-  return server(req, res);
-}
+bootstrap();
