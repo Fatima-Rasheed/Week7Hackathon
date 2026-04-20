@@ -14,6 +14,14 @@ import { UpdateProductDto } from './dto/update-product.dto';
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
+   // ✅ Add this
+  @Get('health')
+  health() {
+    return {
+      status: 'ok',
+      mongo: process.env.MONGODB_URI ? 'uri exists' : 'MONGODB_URI MISSING',
+    };
+  }
 
   @Post()
   create(@Body() dto: CreateProductDto) {
